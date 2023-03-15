@@ -23,6 +23,10 @@ def discover_charge_point_name() -> str:
     return CHARGE_POINT_NAME
 
 
+class CallError(Exception):
+    pass
+
+
 class ChargePoint(cp):
     _connectors: List[int]
 
@@ -46,6 +50,11 @@ class ChargePoint(cp):
             reason="PowerUp",
         )
         response = await self.call(request)
+        if not response:
+            # ocpp.v201 handles CallError, but we could pass 'supress=False'
+            # to let it raise the error exception directly.
+            # The default 'suppress=True' returns a null response
+            raise CallError
 
         if response.status == RegistrationStatusType.accepted:
             logging.info("Connected to central system.")
@@ -94,10 +103,14 @@ class ChargePoint(cp):
             connector_id=connector_id,
         )
         response = await self.call(request)
+        if not response:
+            raise CallError
         logging.info(response)
 
     async def send_heartbeat(self, interval: int) -> None:
         request = call.HeartbeatPayload()
         while True:
-            await self.call(request)
+            response = await self.call(request)
+            if not response:
+                raise CallError
             await asyncio.sleep(interval)
