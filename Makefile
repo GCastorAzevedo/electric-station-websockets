@@ -9,8 +9,8 @@ sockets:
 pids:
 	lsof -i -n | grep ${PORT}
 
-client:
-	python client/main.py
+start-client:
+	poetry run python client/start.py
 
-server:
-	python server/app/main.py
+start-server:
+	poetry run python server/app/main.py
