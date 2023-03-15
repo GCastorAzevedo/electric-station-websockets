@@ -2,7 +2,7 @@ import asyncio
 import logging
 
 import websockets.server
-from central_system import on_connect
+from csms.handlers import on_connect
 from websockets.typing import Subprotocol
 
 logging.basicConfig(level=logging.INFO)

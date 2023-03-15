@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from typing import Dict
+
 from ocpp.routing import on
 from ocpp.v201 import ChargePoint as cp
 from ocpp.v201.call_result import (
