@@ -8,7 +8,19 @@ from ocpp.v201 import call
 from ocpp.v201.enums import ConnectorStatusType, RegistrationStatusType
 from websockets.client import WebSocketClientProtocol
 
+CHARGE_POINT_NAME: str = "CP_1"
+
 logging.basicConfig(level=logging.INFO)
+
+
+def discover_charge_point_name() -> str:
+    """
+    Discovers Charge Point name.
+    """
+
+    # Charge point name is hard coded, but could come from a config,
+    # a table, or some other discovery method.
+    return CHARGE_POINT_NAME
 
 
 class ChargePoint(cp):
