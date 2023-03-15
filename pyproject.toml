@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "switch"
+version = "0.1.0"
+description = ""
+authors = ["Gabriel Castor <gabrielcastor1991@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+ocpp = "^0.17.0"
+websockets = "^10.4"
+
+
+[tool.poetry.group.dev.dependencies]
+flake8 = "^6.0.0"
+isort = "^5.12.0"
+black = "^23.1.0"
+mypy = "^1.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
