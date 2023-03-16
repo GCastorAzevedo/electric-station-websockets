@@ -14,7 +14,7 @@ async def main() -> None:
     charge_point_name = discover_charge_point_name()
     connectors = discover_connectors(charge_point_name)
     async with websockets.client.connect(
-        f"ws://{USER}:{quote(PASSWORD)}@{HOST}:{PORT}/{charge_point_name}",
+        f"ws://{USER}:{quote(PASSWORD)}@{HOST}:{PORT}/{quote(charge_point_name)}",
         subprotocols=[SUB_PROTOCOL],
     ) as ws:
         cp = ChargePoint(charge_point_name, ws, connectors=connectors)
