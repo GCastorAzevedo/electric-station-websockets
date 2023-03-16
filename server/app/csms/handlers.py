@@ -1,6 +1,7 @@
 import logging
 from datetime import datetime
 from typing import Dict
+from urllib.parse import unquote
 
 from ocpp.routing import on
 from ocpp.v201 import ChargePoint as cp
@@ -51,7 +52,7 @@ class ChargePoint(cp):
 
 def parse_path_id(path: str) -> str:
     """Parses the id from the path"""
-    return path.strip("/")
+    return unquote(path.strip("/"))
 
 
 async def on_connect(websocket: WebSocketServerProtocol, path: str) -> None:
