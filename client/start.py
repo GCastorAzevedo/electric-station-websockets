@@ -1,5 +1,6 @@
 import asyncio
 import logging
+from urllib.parse import quote
 
 import websockets.client
 from components.charge_point import ChargePoint, discover_charge_point_name
@@ -13,7 +14,8 @@ async def main() -> None:
     charge_point_name = discover_charge_point_name()
     connectors = discover_connectors(charge_point_name)
     async with websockets.client.connect(
-        f"ws://{HOST}:{PORT}/{charge_point_name}", subprotocols=[SUB_PROTOCOL]
+        f"ws://{USER}:{quote(PASSWORD)}@{HOST}:{PORT}/{charge_point_name}",
+        subprotocols=[SUB_PROTOCOL],
     ) as ws:
         cp = ChargePoint(charge_point_name, ws, connectors=connectors)
 
