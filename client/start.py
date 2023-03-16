@@ -4,13 +4,9 @@ import logging
 import websockets.client
 from components.charge_point import ChargePoint, discover_charge_point_name
 from components.connectors import discover_connectors
-from websockets.typing import Subprotocol
+from config import HOST, PASSWORD, PORT, SUB_PROTOCOL, USER
 
 logging.basicConfig(level=logging.INFO)
-
-HOST: str = "0.0.0.0"
-PORT: int = 9000
-SUB_PROTOCOL: Subprotocol = Subprotocol("ocpp2.0.1")
 
 
 async def main() -> None:

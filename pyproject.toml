@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "switch"
+name = "electric-websockets"
 version = "0.1.0"
 description = ""
 authors = ["Gabriel Castor <gabrielcastor1991@gmail.com>"]
