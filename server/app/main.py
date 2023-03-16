@@ -2,14 +2,10 @@ import asyncio
 import logging
 
 import websockets.server
+from config import HOST, PORT, SERVER_NAME, SUB_PROTOCOL
 from csms.handlers import on_connect
-from websockets.typing import Subprotocol
 
 logging.basicConfig(level=logging.INFO)
-
-HOST: str = "0.0.0.0"
-PORT: int = 9000
-SUB_PROTOCOL: Subprotocol = Subprotocol("ocpp2.0.1")
 
 
 async def main() -> None:
